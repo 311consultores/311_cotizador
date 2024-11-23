@@ -1,0 +1,13 @@
+# Redirigir todas las solicitudes a la carpeta public de 311-apicotizador
+RewriteEngine On
+
+# Verifica que la solicitud no sea un archivo o directorio real
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Redirige todo al subdirectorio public
+RewriteRule ^(.*)$ /311-apicotizador/public/$1 [L]
+
+# Opcional: Configuración base para Laravel (en el subdirectorio public)
+RewriteCond %{REQUEST_URI} !^/311-apicotizador/public/
+RewriteRule ^ /311-apicotizador/public/index.php [L]
